@@ -1,0 +1,18 @@
+<aura:component description="BrandingPanel" implements="forceCommunity:availableForAllPageTypes">
+    <!-- Attributes -->
+    <aura:attribute name="icon" type="String" />
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="subtitle" type="String" />
+    <aura:attribute name="actionLabel" type="String" />
+    <aura:attribute name="actionLink" type="String" />
+    <div class="branding-container">
+        <div class="icon-container large-icon">
+            <lightning:icon iconName="{!'utility:' + v.icon}" variant="{!v.icon}" size="large"/>
+        </div>
+        <div class="branding-header">{!v.title}</div>
+        <div class="branding-subtitle">{!v.subtitle}</div>
+        <div class="action-link">
+            <a href="{!v.actionLink}">{!v.actionLabel} > </a>
+        </div>
+    </div>
+</aura:component>

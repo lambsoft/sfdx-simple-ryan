@@ -1,0 +1,39 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:attribute name="buttonTitle" type="String" description="Button Title" access="global" default="Click"/>
+    <aura:attribute name="buttonURL" type="String" description="Button URL" access="global"/>
+    <aura:attribute name="buttonLabel" type="String" description="Button Label" access="global" default="Submit"/>
+    <aura:attribute name="buttonBigOption" type="Boolean" description="Big Button" access="global" default="false"/>
+	<aura:attribute name="buttonIconEnabled" type="Boolean" description="Button w/ Icon" access="global" default="false"/>
+	<aura:attribute name="buttonIconSLDSName" type="String" description="SLDS Icon Name" access="global" default="utility:download"/>
+<!-- No Need to doInit  -->
+<!-- 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+-->
+    <!-- Label Syntax -->
+    <!--
+    // {!$Label.c.labelName}
+    
+    //icon svg | style="fill: #00ff00;width: 50px;height: 50px;
+    // style="{!'fill:'+ v.buttonIconColor+';width: '+v.buttonIconSize+';height: '+v.buttonIconSize}"
+    // lightning:button does not have style attribute :(    
+    -->
+    
+    <div>		     
+    	<aura:if isTrue="{!v.buttonIconEnabled}">
+    		<aura:if isTrue="{!v.buttonBigOption}">
+				<lightning:button variant="brand" class="forceCommunityAskCommunity" label="{!v.buttonTitle}" iconName="{!v.buttonIconSLDSName}" iconPosition="left" value="{!v.buttonURL}" onclick="{!c.handleClick}" />
+	    		<aura:set attribute="else">
+					<lightning:button variant="brand" label="{!v.buttonTitle}" iconName="{!v.buttonIconSLDSName}" iconPosition="left" value="{!v.buttonURL}" onclick="{!c.handleClick}" />
+    			</aura:set>
+  			</aura:if>    							    
+    		<aura:set attribute="else">
+    			<aura:if isTrue="{!v.buttonBigOption}">
+					<lightning:button variant="brand" class="forceCommunityAskCommunity" label="{!v.buttonTitle}" value="{!v.buttonURL}" onclick="{!c.handleClick}" />
+					<aura:set attribute="else">
+						<lightning:button variant="brand" label="{!v.buttonTitle}" value="{!v.buttonURL}" onclick="{!c.handleClick}" />          
+    				</aura:set>
+  				</aura:if>    							    
+    		</aura:set>
+  		</aura:if>                 
+    </div>
+</aura:component>

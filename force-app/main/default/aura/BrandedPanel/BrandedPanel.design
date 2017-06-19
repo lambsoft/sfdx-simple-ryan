@@ -1,0 +1,7 @@
+<design:component >
+    <design:attribute label="Icon" name="icon" />
+    <design:attribute label="Title" name="title" />
+    <design:attribute label="Subtitle" name="subtitle" />
+    <design:attribute label="Action Label" name="actionLabel" />
+    <design:attribute label="Action Link" name="actionLink" />
+</design:component>

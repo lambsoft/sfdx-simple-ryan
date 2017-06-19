@@ -1,0 +1,8 @@
+<design:component >
+	<design:attribute name="buttonTitle" label="Button Title" description="Label for Button" default="Click"/>
+    <design:attribute name="buttonURL" label="Button URL" description="Target URL on Click"/>
+    <design:attribute name="buttonLabel" label="Button Label" description="Button Label" default="Submit"/>
+	<design:attribute name="buttonBigOption" label="Big Button" description="Big Button" default="false"/>    
+	<design:attribute name="buttonIconEnabled" label="Button Icon" description="Button w/ Icon" default="false"/>
+	<design:attribute name="buttonIconSLDSName" label="Icon Name [group:name]" description="SLDS Icon Name" default="utility:download"/>
+</design:component>

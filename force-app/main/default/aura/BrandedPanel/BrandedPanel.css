@@ -1,0 +1,43 @@
+.THIS.branding-container{
+    border: 1px solid #999;
+    padding: 20px;
+    text-align: center;
+    min-height: 500px;
+    position: relative;
+    border-radius: 7px;
+    margin: 0 15px;
+}
+
+.THIS .branding-header{
+    margin-top: 40px;
+    font-size: 50px;
+    font-weight: 100;
+    color: token(colorTextLabel);    
+}
+.THIS .branding-subtitle{
+    font-weight: 300;
+    font-size: 20px;
+    color: #999;
+    margin-top: 10px;
+}
+.THIS .action-link{
+    position: absolute;
+    bottom: 30px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    font-size:20px;
+}
+.THIS .action-link a{
+    color: token(colorTextLink);    
+    text-decoration: none;
+}
+.THIS .icon-container{
+    margin-top: 40px;
+}
+
+.THIS .large-icon svg{
+    width: 6em;
+    height: 6em;
+}
