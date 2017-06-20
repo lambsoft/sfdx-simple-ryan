@@ -1,0 +1,67 @@
+<project name="Salesforce Ant Tasks" default="none" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="${sf.ant.tool.path}/${salesforce.api.version}/ant-salesforce.jar" />
+        </classpath>
+    </taskdef>
+
+    <target name="none">
+    </target>
+
+    <target name="echotime">
+      <tstamp>
+        <format property="TIME_STAMP_NOW" pattern="yyyy-MM-dd HH:mm:ss:sss zzz" locale="en,US"/>
+      </tstamp>
+      <echo>${message} : ${TIME_STAMP_NOW}</echo>
+    </target>
+
+<!-- RETRIEVE METADATA FROM DEV -->
+    <target name="retrieveMetadata">
+      <antcall target="echotime">
+        <param name="message" value="START"/>
+      </antcall>
+      <delete dir="retrieve/"/>
+      <mkdir dir="retrieve/"/>
+      <sf:retrieve username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
+        retrieveTarget="retrieve/" unpackaged="package.xml"/>
+      <antcall target="echotime">
+        <param name="message" value="END  "/>
+      </antcall>
+    </target>
+
+<!-- VALIDATE METADATA TO DEV ORG -->
+  <target name="validateMetadata">
+      <antcall target="echotime">
+        <param name="message" value="START"/>
+      </antcall>
+      <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
+        deployRoot="deploy/"
+        testLevel="${global.NoTestRun}"
+        allowMissingFiles="${global.missingfilesallowed}"
+        ignoreWarnings="${global.ignorewarnings}"
+        rollbackOnError="${global.rollbackonerror}" checkonly="${global.checkonly}"/>
+      <antcall target="echotime">
+        <param name="message" value="END  "/>
+      </antcall>        
+    </target>    
+
+<!-- DEPLOY METADATA TO DEV ORG -->
+    <target name="deployMetadata">
+      <antcall target="echotime">
+        <param name="message" value="START"/>
+      </antcall>
+      <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
+        deployRoot="deploy/"
+        testLevel="${global.NoTestRun}"
+        allowMissingFiles="${global.missingfilesallowed}"
+        ignoreWarnings="${global.ignorewarnings}"
+        rollbackOnError="${global.rollbackonerror}"/>
+      <antcall target="echotime">
+        <param name="message" value="END  "/>
+      </antcall>        
+    </target>   
+</project>    
