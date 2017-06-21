@@ -65,7 +65,7 @@
       </antcall>        
     </target>
 
-
+<!-- ATTEMPT TO RUN SFDX BUT IT ONLY WORKS FROM COMMAND LINE DUE TO PATH TO SFDX TOOL -->
 	<target name="sfdxConvert">
 		<exec executable="sfdx">
 			<arg value="force:source:convert"/>
@@ -75,14 +75,9 @@
 	</target>
 
 <!-- PULL SOURCE AND DEPLOY METADATA TO DEV ORG -->
-    <target name="pullSourceAndValidate">
-      <delete dir="metadata"/>
-      <mkdir dir="metadata"/>
-      <sf:retrieve username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
-        retrieveTarget="retrieve/" unpackaged="package.xml"/>
-
+    <target name="validateConvertedMetadata">
       <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
-        deployRoot="metadata"
+        deployRoot="convert"
         testLevel="${global.NoTestRun}"
         allowMissingFiles="${global.missingfilesallowed}"
         ignoreWarnings="${global.ignorewarnings}"
