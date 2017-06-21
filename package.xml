@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <name>AuraDefinitionBundle</name>
+    <members>BrandedPanel</members>
+    <members>CommunityFooter</members>
+    <members>CustomBrandedButton</members>
+    <members>defaultTokens</members>
+  </types>
+  <types>
+    <name>ApexClass</name>
+    <members>DemoController</members>
+    <members>DemoControllerTests</members>
+  </types>
+  <types>
+    <name>ApexPage</name>
+    <members>DemoPage</members>
+  </types>
+  <version>39.0</version>
+</Package>
