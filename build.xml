@@ -63,5 +63,33 @@
       <antcall target="echotime">
         <param name="message" value="END  "/>
       </antcall>        
-    </target>   
+    </target>
+
+
+	<target name="sfdxConvert">
+		<exec executable="sfdx">
+			<arg value="force:source:convert"/>
+			<arg value="-d"/>
+			<arg value="convert"/>
+		</exec>
+	</target>
+
+<!-- PULL SOURCE AND DEPLOY METADATA TO DEV ORG -->
+    <target name="pullSourceAndValidate">
+      <delete dir="metadata"/>
+      <mkdir dir="metadata"/>
+      <sf:retrieve username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
+        retrieveTarget="retrieve/" unpackaged="package.xml"/>
+
+      <sf:deploy username="${sf.dev.username}" password="${sf.dev.password}" serverurl="${sf.dev.serverurl}" maxPoll="${sf.maxPoll}"
+        deployRoot="metadata"
+        testLevel="${global.NoTestRun}"
+        allowMissingFiles="${global.missingfilesallowed}"
+        ignoreWarnings="${global.ignorewarnings}"
+        rollbackOnError="${global.rollbackonerror}" 
+        checkonly="${global.checkonly}"
+      />
+    </target>
+    
+       
 </project>    
