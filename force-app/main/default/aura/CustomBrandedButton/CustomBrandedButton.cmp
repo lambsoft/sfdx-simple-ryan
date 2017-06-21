@@ -5,19 +5,9 @@
     <aura:attribute name="buttonBigOption" type="Boolean" description="Big Button" access="global" default="false"/>
 	<aura:attribute name="buttonIconEnabled" type="Boolean" description="Button w/ Icon" access="global" default="false"/>
 	<aura:attribute name="buttonIconSLDSName" type="String" description="SLDS Icon Name" access="global" default="utility:download"/>
-<!-- No Need to doInit  -->
-<!-- 
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
--->
     <!-- Label Syntax -->
-    <!--
-    // {!$Label.c.labelName}
-    
-    //icon svg | style="fill: #00ff00;width: 50px;height: 50px;
-    // style="{!'fill:'+ v.buttonIconColor+';width: '+v.buttonIconSize+';height: '+v.buttonIconSize}"
-    // lightning:button does not have style attribute :(    
-    -->
-    
+    <!-- {!$Label.c.labelName} -->
+        
     <div>		     
     	<aura:if isTrue="{!v.buttonIconEnabled}">
     		<aura:if isTrue="{!v.buttonBigOption}">
