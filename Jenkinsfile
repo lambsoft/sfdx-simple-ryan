@@ -24,7 +24,7 @@ node {
 	
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Test Pipe') {
-        	sh 'sfdx plugins' 
+        	sh "${toolbelt}/sfdx plugins" 
         }
     }
 	
