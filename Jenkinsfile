@@ -17,6 +17,12 @@ node {
         // when running in multi-branch job, one must issue this command
         checkout scm
     }
+    
+    stage('Example') {
+		steps {
+			echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+		}
+	}
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Create Scratch Org') {
@@ -41,10 +47,10 @@ node {
                 error 'push failed'
             }
             // assign permset
-            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:user:permset:assign --targetusername ${SFDC_USERNAME} --permsetname DreamHouse"
-            if (rc != 0) {
-                error 'permset:assign failed'
-            }
+//            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:user:permset:assign --targetusername ${SFDC_USERNAME} --permsetname DreamHouse"
+//            if (rc != 0) {
+//                error 'permset:assign failed'
+//            }
         }
 
         stage('Run Apex Test') {
@@ -60,5 +66,16 @@ node {
         stage('collect results') {
             junit keepLongStdio: true, testResults: 'tests/**/*-junit.xml'
         }
+        
+        // Optional Delete Stage
+//        stage('Delete Test Org') {
+//			timeout(time: 120, unit: 'SECONDS') {
+//				rc = sh returnStatus: true, script: " ${toolbelt}/sfdx force:org:delete --targetusername ${SFDC_USERNAME} --noprompt "
+//				if (rc != 0) {
+//					error 'org deletion request failed'
+//				}
+//			}
+//		}
+                
     }
 }
